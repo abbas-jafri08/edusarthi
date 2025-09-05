@@ -1,0 +1,355 @@
+/* Navbar */
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 16px 40px;
+}
+.navbar-logo {
+  display: flex;
+  align-items: center;
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #2f8dd6;
+}
+.navbar-links {
+  display: flex;
+  gap: 20px;
+}
+.navbar-links a {
+  text-decoration: none;
+  color: #333;
+  font-weight: 500;
+}
+
+/* Floating button */
+.floating-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background: #2f8dd6;
+  color: white;
+  padding: 14px;
+  border-radius: 50%;
+  font-size: 22px;
+  cursor: pointer;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+  text-decoration: none;
+}
+
+/* Home page */
+.home-container {
+  text-align: center;
+  margin-top: 40px;
+}
+.home-img {
+  width: 280px;
+  margin: 0 auto;
+  display: block;
+}
+.home-title {
+  font-size: 2.5rem;
+  font-weight: bold;
+  margin-top: 20px;
+}
+.home-subtitle {
+  color: #555;
+  margin-top: 10px;
+}
+.get-started-btn {
+  margin-top: 30px;
+  padding: 12px 32px;
+  border-radius: 25px;
+  background: #2f8dd6;
+  color: white;
+  border: none;
+  cursor: pointer;
+  font-size: 1rem;
+  font-weight: bold;
+  box-shadow: 0 2px 6px rgba(0,0,0,0.2);
+}
+
+/* Career landing page */
+.career-container {
+  max-width: 1000px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+.career-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 12px;
+}
+.career-subtitle {
+  color: #555;
+  margin-bottom: 40px;
+}
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 20px;
+}
+.card {
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  padding: 20px;
+  background: #f9fafb;
+  text-align: left;
+  transition: transform 0.2s;
+}
+.card:hover {
+  transform: translateY(-5px);
+}
+.card h3 {
+  font-size: 1.2rem;
+  margin-bottom: 8px;
+}
+.card p {
+  color: #444;
+}
+
+/* Chatbot */
+.chat-container {
+  display: flex;
+  flex-direction: column;
+  height: 100vh;
+}
+.chat-header {
+  background: #2f8dd6;
+  color: white;
+  padding: 12px;
+  display: flex;
+  justify-content: space-between;
+}
+.chat-body {
+  flex: 1;
+  overflow-y: auto;
+  padding: 16px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.user-msg {
+  align-self: flex-end;
+  background: #2f8dd6;
+  color: white;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 60%;
+}
+.bot-msg {
+  align-self: flex-start;
+  background: #e5e7eb;
+  padding: 10px 14px;
+  border-radius: 16px;
+  max-width: 60%;
+}
+.chat-input {
+  display: flex;
+  border-top: 1px solid #ddd;
+  padding: 8px;
+}
+.chat-input input {
+  flex: 1;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 16px;
+}
+.chat-input button {
+  margin-left: 8px;
+  background: #2f8dd6;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  border-radius: 16px;
+  cursor: pointer;
+}
+/* ===== Subpage Common Layout ===== */
+.subpage-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  background: #fff;
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.subpage-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: #2f8dd6;
+}
+
+.subpage-text {
+  color: #444;
+  margin-top: 10px;
+  font-size: 1.1rem;
+  line-height: 1.6;
+}
+
+.subpage-example {
+  color: #666;
+  margin-top: 20px;
+  font-style: italic;
+}
+
+/* Back button */
+.back-btn {
+  margin-top: 30px;
+  padding: 10px 20px;
+  border-radius: 20px;
+  border: 1px solid #2f8dd6;
+  background: #fff;
+  color: #2f8dd6;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.back-btn:hover {
+  background: #2f8dd6;
+  color: #fff;
+}
+
+/* ===== Discover Path Quiz ===== */
+.quiz-question {
+  margin-top: 20px;
+  font-weight: 500;
+  font-size: 1.1rem;
+}
+.quiz-buttons button {
+  margin: 8px;
+  padding: 8px 16px;
+  border-radius: 8px;
+  border: 1px solid #2f8dd6;
+  cursor: pointer;
+  background: #fff;
+  color: #2f8dd6;
+  font-weight: bold;
+  transition: 0.2s;
+}
+.quiz-buttons button:hover {
+  background: #2f8dd6;
+  color: #fff;
+}
+.result-text {
+  margin-top: 20px;
+  font-weight: bold;
+  color: #111;
+}
+
+/* ===== Explore Colleges ===== */
+.college-search {
+  padding: 8px;
+  width: 80%;
+  margin-top: 20px;
+  border-radius: 8px;
+  border: 1px solid #ddd;
+}
+.college-list {
+  margin-top: 20px;
+  text-align: left;
+}
+.college-item {
+  padding: 12px;
+  border: 1px solid #e5e7eb;
+  border-radius: 8px;
+  margin-bottom: 10px;
+  background: #f9fafb;
+  transition: 0.2s;
+}
+.college-item:hover {
+  background: #eef6fc;
+}
+
+/* ===== Notifications ===== */
+.notifications {
+  margin-top: 20px;
+  text-align: left;
+}
+.notifications li {
+  margin: 10px 0;
+  padding: 10px;
+  background: #f1f9ff;
+  border-left: 4px solid #2f8dd6;
+  border-radius: 6px;
+}
+
+/* ===== Profile Page ===== */
+.profile-input {
+  margin-top: 15px;
+  padding: 10px;
+  width: 80%;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+}
+.profile-preview {
+  margin-top: 20px;
+  font-size: 1.1rem;
+  color: #333;
+  font-weight: 500;
+}
+
+/* ===== Dashboard ===== */
+.dashboard-links {
+  margin-top: 20px;
+  list-style: none;
+  padding: 0;
+}
+.dashboard-links li {
+  margin: 12px 0;
+  padding: 12px;
+  background: #f9fafb;
+  border-radius: 8px;
+  transition: 0.2s;
+}
+.dashboard-links li:hover {
+  background: #eef6fc;
+}
+.dashboard-links a {
+  text-decoration: none;
+  font-weight: 500;
+  color: #2f8dd6;
+}
+/* Subpage Common Layout */
+.subpage-container {
+  max-width: 900px;
+  margin: 40px auto;
+  padding: 20px;
+  text-align: center;
+  background: var(--bg);
+  border-radius: 12px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+  transition: background 0.3s, color 0.3s;
+}
+
+/* Light/Dark colors */
+:root {
+  --bg: #fff;
+  --text: #111;
+  --subtext: #444;
+  --title: #2f8dd6;
+}
+.dark {
+  --bg: #1e1e2f;
+  --text: #f5f5f5;
+  --subtext: #bbb;
+  --title: #4dabf7; /* lighter blue for visibility */
+}
+
+/* Apply to elements */
+.subpage-title {
+  font-size: 2rem;
+  font-weight: bold;
+  margin-bottom: 16px;
+  color: var(--title);
+}
+.subpage-text {
+  color: var(--subtext);
+}
+.subpage-example {
+  color: var(--text);
+  font-style: italic;
+}
