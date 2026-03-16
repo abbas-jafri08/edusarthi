@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { askGemini } from "../lib/gemini";
+import { askAI } from "../lib/groq";
 
 export default function StayOnTrack() {
   const [classLevel, setClassLevel] = useState("");
@@ -10,10 +10,10 @@ export default function StayOnTrack() {
     if (!classLevel.trim()) return;
     setLoading(true);
 
-    const reply = await askGemini(
+    const reply = await askAI(
       `Generate a timeline of important dates for an Indian student in ${classLevel}.
-       Include: Admission deadlines, scholarship applications, entrance tests.
-       Format as a list with months.`
+Include admission deadlines, scholarship applications, and entrance tests.
+Format as a monthly list.`
     );
 
     setTimeline(reply);

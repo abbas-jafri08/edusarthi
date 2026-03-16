@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { askGemini } from "../lib/gemini";
+import { askAI } from "../lib/groq";
 
 export default function ExploreColleges() {
   const [city, setCity] = useState("");
@@ -10,10 +10,14 @@ export default function ExploreColleges() {
     if (!city.trim()) return;
     setLoading(true);
 
-    const reply = await askGemini(
+    const reply = await askAI(
       `List 5 government degree colleges in or near ${city}, India.
-       For each, include: College Name, Programs, Facilities (hostel, labs, library), Medium of Instruction.
-       Write in bullet points.`
+For each include:
+- College name
+- Programs offered
+- Facilities (hostel, labs, library)
+- Medium of instruction
+Use bullet points.`
     );
 
     setColleges(reply);
@@ -29,7 +33,7 @@ export default function ExploreColleges() {
         <div style={{ display: "flex", gap: 8, marginTop: 12 }}>
           <input
             type="text"
-            placeholder="Enter your city/district"
+            placeholder="Enter your city"
             value={city}
             onChange={(e) => setCity(e.target.value)}
             style={{ flex: 1, padding: 10, borderRadius: 8, border: "1px solid #ddd" }}
@@ -42,7 +46,9 @@ export default function ExploreColleges() {
         {colleges && (
           <div style={{ marginTop: 20 }}>
             <h3>Colleges in {city}</h3>
-            <div>{colleges.split("\n").map((c, i) => <p key={i}>{c}</p>)}</div>
+            {colleges.split("\n").map((c, i) => (
+              <p key={i}>{c}</p>
+            ))}
           </div>
         )}
       </div>

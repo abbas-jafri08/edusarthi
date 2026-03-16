@@ -1,56 +1,120 @@
-import { useState, useRef, useEffect } from "react";
-import { askGemini } from "../lib/gemini";
+  import { useState, useRef, useEffect } from "react";
+  import { askAI } from "../lib/groq";
 
-export default function Chatbot() {
-  const [messages, setMessages] = useState([
-    { id: 1, who: "bot", text: "Hi! I'm EduSarthi — ask me about courses, colleges, or careers." }
-  ]);
-  const [input, setInput] = useState("");
-  const bodyRef = useRef();
+  export default function Chatbot() {
 
-  useEffect(() => {
-    bodyRef.current?.scrollTo({ top: bodyRef.current.scrollHeight, behavior: "smooth" });
-  }, [messages]);
+    const [messages, setMessages] = useState([
+      {
+        id: 1,
+        who: "bot",
+        text: "Hi! I'm EduSarthi — ask me about courses, colleges, or careers."
+      }
+    ]);
 
-  async function send() {
-    if (!input.trim()) return;
-    const userMsg = { id: Date.now(), who: "user", text: input.trim() };
-    setMessages(m => [...m, userMsg]);
-    setInput("");
+    const [input, setInput] = useState("");
+    const [loading, setLoading] = useState(false);
 
-    const reply = await askGemini(
-      `You are EduSarthi, a career advisor for Indian students. 
-       Answer clearly in 3–4 sentences. 
-       Question: "${userMsg.text}"`
-    );
+    const bodyRef = useRef();
 
-    setMessages(m => [...m, { id: Date.now() + 1, who: "bot", text: reply }]);
-  }
+    useEffect(() => {
+      bodyRef.current?.scrollTo({
+        top: bodyRef.current.scrollHeight,
+        behavior: "smooth"
+      });
+    }, [messages]);
 
-  return (
-    <div className="container">
-      <div className="chat-wrap card">
-        <div style={{ padding: 12, borderBottom: "1px solid rgba(15,23,42,0.04)" }}>
-          <strong>EduSarthi Advisor</strong>
+    async function send() {
+
+      if (!input.trim()) return;
+
+      const userMsg = {
+        id: Date.now(),
+        who: "user",
+        text: input.trim()
+      };
+
+      setMessages((m) => [...m, userMsg]);
+      setInput("");
+      setLoading(true);
+
+      const reply = await askAI(`
+  You are EduSarthi, an AI career advisor for Indian students.
+
+Give practical advice about:
+- courses
+- colleges
+- entrance exams
+- skills
+
+Answer in 3–4 clear sentences.
+
+Student question:
+${userMsg.text}
+  `);
+
+      setMessages((m) => [
+        ...m,
+        {
+          id: Date.now() + 1,
+          who: "bot",
+          text: reply
+        }
+      ]);
+
+      setLoading(false);
+    }
+
+    return (
+      <div className="container">
+
+        <div className="chat-wrap card">
+
+          <div style={{ padding: 12, borderBottom: "1px solid rgba(15,23,42,0.05)" }}>
+            <strong>EduSarthi Advisor</strong>
+          </div>
+
+          <div ref={bodyRef} className="chat-body">
+
+            {messages.map((m) => (
+              <div
+                key={m.id}
+                className={`bubble ${m.who === "bot" ? "bot" : "user"}`}
+              >
+                {m.text}
+              </div>
+            ))}
+
+            {loading && (
+              <div className="bubble bot">
+                Typing...
+              </div>
+            )}
+
+          </div>
+
+          <div className="chat-input">
+
+            <input
+              placeholder="Ask about courses, colleges, scholarships..."
+              style={{
+                flex: 1,
+                padding: 10,
+                borderRadius: 10,
+                border: "1px solid #ddd"
+              }}
+              value={input}
+              onChange={(e) => setInput(e.target.value)}
+              onKeyDown={(e) => e.key === "Enter" && send()}
+            />
+
+            <button className="btn-primary" onClick={send}>
+              Send
+            </button>
+
+          </div>
+
         </div>
 
-        <div ref={bodyRef} className="chat-body">
-          {messages.map(m => (
-            <div key={m.id} className={`bubble ${m.who === "bot" ? "bot" : "user"}`}>{m.text}</div>
-          ))}
-        </div>
-
-        <div className="chat-input">
-          <input
-            placeholder="Ask about courses, colleges, scholarships..."
-            style={{ flex: 1, padding: 10, borderRadius: 10, border: "1px solid #ddd" }}
-            value={input}
-            onChange={(e) => setInput(e.target.value)}
-            onKeyDown={(e) => e.key === "Enter" && send()}
-          />
-          <button className="btn-primary" onClick={send}>Send</button>
-        </div>
       </div>
-    </div>
-  );
-}
+    );
+  }

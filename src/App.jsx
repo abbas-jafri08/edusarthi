@@ -1,4 +1,5 @@
 import { Routes, Route } from "react-router-dom";
+
 import Navbar from "./components/Navbar.jsx";
 import FloatingButton from "./components/FloatingButton.jsx";
 
@@ -16,19 +17,30 @@ export default function App() {
   return (
     <>
       <Navbar />
+
       <main className="app-main">
+
         <Routes>
+
           <Route path="/" element={<Home />} />
+
           <Route path="/career" element={<CareerLanding />} />
           <Route path="/career/discover" element={<DiscoverPath />} />
           <Route path="/career/map" element={<MapFuture />} />
           <Route path="/career/colleges" element={<ExploreColleges />} />
           <Route path="/career/track" element={<StayOnTrack />} />
+
           <Route path="/chatbot" element={<Chatbot />} />
           <Route path="/dashboard" element={<Dashboard />} />
           <Route path="/profile" element={<Profile />} />
+
+          {/* fallback route */}
+          <Route path="*" element={<h2 style={{padding:40}}>Page Not Found</h2>} />
+
         </Routes>
+
       </main>
+
       <FloatingButton />
     </>
   );

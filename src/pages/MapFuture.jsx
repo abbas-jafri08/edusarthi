@@ -1,5 +1,5 @@
 import { useState } from "react";
-import { askGemini } from "../lib/gemini";
+import { askAI } from "../lib/groq";
 
 export default function MapFuture() {
   const [course, setCourse] = useState("");
@@ -10,10 +10,13 @@ export default function MapFuture() {
     if (!course.trim()) return;
     setLoading(true);
 
-    const reply = await askGemini(
+    const reply = await askAI(
       `Create a roadmap for an Indian student pursuing ${course}.
-       Include: 1) Careers, 2) Government exams/private jobs, 3) Higher studies/skills.
-       Format as bullet points.`
+Include:
+1. Career options
+2. Government exams or private jobs
+3. Higher studies and important skills
+Format as bullet points.`
     );
 
     setRoadmap(reply);
@@ -42,11 +45,9 @@ export default function MapFuture() {
         {roadmap && (
           <div style={{ marginTop: 20 }}>
             <h3>Career Roadmap</h3>
-            <div className="roadmap-output">
-              {roadmap.split("\n").map((line, i) => (
-                <p key={i}>{line}</p>
-              ))}
-            </div>
+            {roadmap.split("\n").map((line, i) => (
+              <p key={i}>{line}</p>
+            ))}
           </div>
         )}
       </div>
